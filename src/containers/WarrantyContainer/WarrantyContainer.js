@@ -27,6 +27,18 @@ export default class WarrantyContainer extends React.Component {
         })
     }
 
+    handleAddWarranty = (body) => {
+        warrantyAPI.create(this.props.uid,body)
+            .then(res => {
+                this.setState({
+                    warranties: res.data.warranties
+                })
+                // this.state.warranties.push(body);
+                // this.forceUpdate()
+            })
+            .catch(err => console.log(err))
+    }
+
     handleDelete = (uid, wid) => {
         // console.log(this.state.warranties)
         warrantyAPI.destroy(uid, wid)
@@ -43,7 +55,7 @@ export default class WarrantyContainer extends React.Component {
                 <h4>Warranties</h4>
                 <p>6 items</p>
                 {/* <div className="bg-light ml-3 mr-3">+</div> */}
-                <AddWarrantyModal addWarrantyClicked={this.addWarrantyClicked} addWarrantyStatus={this.state.addWarrantyStatus} />
+                <AddWarrantyModal handleAddWarranty={this.handleAddWarranty} addWarrantyClicked={this.addWarrantyClicked} addWarrantyStatus={this.state.addWarrantyStatus} />
                 <button onClick={this.addWarrantyClicked} className="btn btn-secondary btn-block">+</button>
                 <div className="container warranties row row-cols-1">
                     {

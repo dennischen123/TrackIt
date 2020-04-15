@@ -2,15 +2,17 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
-
 
 export default class AddWarrantyModal extends React.Component {
     state = {
-        // addModalStatus: false,
-        // title: "",
-        // content: "",
+        name: "",
+        brand: "",
+        purchaseDate: "",
+        warrantyLength: "",
+        serialNumber: "",
+        photo: "",
+        comments: ""
     }
 
     addModalClicked = () => {
@@ -25,7 +27,18 @@ export default class AddWarrantyModal extends React.Component {
         })
     }
 
-    addPost = () => {
+    handleAddWarranty = () => {
+        let warranty = {
+            name: this.state.name,
+            brand: this.state.brand,
+            purchaseDate: this.state.purchaseDate,
+            warrantyLength: this.state.warrantyLength,
+            serialNumber: this.state.serialNumber,
+            photo: this.state.photo,
+            comments: this.state.comments
+        }
+        this.props.handleAddWarranty(warranty);
+        this.props.addWarrantyClicked();
     }
 
     render() {
@@ -120,7 +133,7 @@ export default class AddWarrantyModal extends React.Component {
                         <Modal.Footer>
                             <Button
                                 variant="primary"
-                                onClick={this.addPost} >
+                                onClick={this.handleAddWarranty} >
                                 Add
                             </Button>
                         </Modal.Footer>
