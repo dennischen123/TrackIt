@@ -6,24 +6,25 @@ import Home from '../Home/Home'
 // import Login from '../components/auth/login/login';
 import Register from '../auth/Register/Register';
 import Login from '../auth/Login/Login'
-import WarrantyContainer from '../../containers/WarrantyContainer/WarrantyContainer'
-import AdditionalContainer from '../../containers/AdditionalContainer/AdditionalContainer'
+import Locker from '../../components/Locker/Locker'
+// import WarrantyContainer from '../../containers/WarrantyContainer/WarrantyContainer'
+// import AdditionalContainer from '../../containers/AdditionalContainer/AdditionalContainer'
 
 const Routes = (props) => {
     return (
         <Switch>
-            {/* <Route exact path='/' component={ Home }/> */}
+            <Route exact path='/' component={ Home }/>
             <Route 
-                path="/warranties"
+                path="/locker"
                 render= {
-                    () => props.user ? <WarrantyContainer /> : <Redirect to="/login" />
+                    () => props.uid ? <Locker uid={ props.uid } /> : <Redirect to="/login" />
                 }
             />
             <Route 
                 path='/register'
                 render={
-                    () => props.user ? 
-                            <Redirect to="/warranties" /> 
+                    () => props.uid ? 
+                            <Redirect to="/home" /> 
                         : 
                             <Register register={ props.register } />
                 }
@@ -31,8 +32,8 @@ const Routes = (props) => {
             <Route 
                 path='/login'
                 render={
-                    () => props.user ? 
-                            <Redirect to="/warranties" />
+                    () => props.uid ? 
+                            <Redirect to="/home" />
                         :
                             <Login login={props.login} />
                 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import warrantyAPI from './../../api/warrantyAPI';
+// import warrantyAPI from './../../api/warrantyAPI';
 import Routes from '../config/routes';
 import Header from '../../layout/Header/Header';
-import Footer from '../../layout/Footer/Footer';
+// import Footer from '../../layout/Footer/Footer';
 import jwt_decode from 'jwt-decode';
 import userApi from '../../api/userAPI';
 import setAuthHeader from '../../utils/setAuthHeader';
@@ -24,6 +24,7 @@ class App extends React.Component {
         uid: decoded._id
       })
     }
+
   }
 
   register = (user) => {
@@ -34,7 +35,7 @@ class App extends React.Component {
           localStorage.setItem('jwtToken', token);
           setAuthHeader(token);
           const decoded = jwt_decode(token);
-          this.ssetState({
+          this.setState({
             name: decoded.name,
             uid: decoded._id
           })
@@ -72,7 +73,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="APP">
-        <h1>App</h1>
+        {/* <h1>App</h1> */}
         <Header
           logout={this.logout}
           name={this.state.name}
@@ -83,7 +84,7 @@ class App extends React.Component {
           register={this.register}
           uid={this.state.uid}
         />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     )
   }
