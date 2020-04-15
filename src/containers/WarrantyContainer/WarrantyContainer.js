@@ -2,10 +2,12 @@ import React from 'react';
 import warrantyAPI from '../../api/warrantyAPI';
 import Warranty from '../../components/Warranty/Warranty';
 import './WarrantyContainer.css'
+import AddWarrantyModal from '../../components/AddWarrantyModal/AddWarrantyModal';
 
 export default class WarrantyContainer extends React.Component {
     state = {
-        warranties : []
+        warranties : [],
+        addWarrantyStatus: false,
     }
 
     componentDidMount() {
@@ -18,6 +20,11 @@ export default class WarrantyContainer extends React.Component {
                 }
             })
             .catch(err => console.log(err))
+    }
+    addWarrantyClicked = () => {
+        this.setState({
+            addWarrantyStatus: this.state.addWarrantyStatus ? false : true
+        })
     }
 
     handleDelete = (uid, wid) => {
@@ -36,7 +43,8 @@ export default class WarrantyContainer extends React.Component {
                 <h4>Warranties</h4>
                 <p>6 items</p>
                 {/* <div className="bg-light ml-3 mr-3">+</div> */}
-                <button className="btn btn-secondary btn-block">+</button>
+                <AddWarrantyModal addWarrantyClicked={this.addWarrantyClicked} addWarrantyStatus={this.state.addWarrantyStatus} />
+                <button onClick={this.addWarrantyClicked} className="btn btn-secondary btn-block">+</button>
                 <div className="container warranties row row-cols-1">
                     {
                         warranties && warranties.map(warranty => {
