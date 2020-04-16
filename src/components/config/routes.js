@@ -4,6 +4,7 @@ import Home from '../Home/Home'
 // import Register from '../auth/Register/Register';
 // import Login from '../auth/Login/Login'
 import Locker from '../../components/Locker/Locker'
+import WarrantyDetails from '../../components/WarrantyDetails/WarrantyDetails'
 
 const Routes = (props) => {
     return (
@@ -20,6 +21,12 @@ const Routes = (props) => {
                 path="/locker"
                 render= {
                     () => props.uid ? <Locker uid={ props.uid } /> : <Redirect to="/login" />
+                }
+            />
+            <Route 
+                path="/warranties"
+                render= {
+                    () => <WarrantyDetails uid={props.uid}/>
                 }
             />
             <Route 
