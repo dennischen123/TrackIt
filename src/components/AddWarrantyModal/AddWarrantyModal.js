@@ -15,6 +15,20 @@ export default class AddWarrantyModal extends React.Component {
         comments: ""
     }
 
+    getInitialState = () => ({
+        name: "",
+        brand: "",
+        purchaseDate: "",
+        warrantyLength: "",
+        serialNumber: "",
+        photo: "",
+        comments: ""
+    })
+
+    resetState = () => {
+        this.setState(this.getInitialState());
+    }
+
     addModalClicked = () => {
         this.setState({
             addModalStatus: this.state.addModalStatus ? false : true,
@@ -41,19 +55,26 @@ export default class AddWarrantyModal extends React.Component {
         this.props.addWarrantyClicked();
     }
 
+    handleOnHide = () => {
+        this.setState(this.getInitialState);
+        this.props.addWarrantyClicked();
+    }
+
     render() {
         return (
             <div>
                 {this.props.addWarrantyStatus && <>
-                    <Modal show={this.props.addWarrantyStatus} onHide={this.props.addWarrantyClicked}>
+                    <Modal show={this.props.addWarrantyStatus} onHide={this.handleOnHide}>
                         <Modal.Header>
-                            <Modal.Title>Add Post</Modal.Title>
+                            <Modal.Title>Add Warranty</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <Form>
                                 <Form.Group>
-                                    <Form.Label>Name</Form.Label>
+                                    <Form.Label>Name *</Form.Label>
                                     <Form.Control
+                                        id="formcheck-api-regular"
+                                        size="sm"
                                         id="postTitle"
                                         type="text"
                                         placeholder="Enter name"
@@ -63,8 +84,9 @@ export default class AddWarrantyModal extends React.Component {
                                     />
                                 </Form.Group>
                                 <Form.Group>
-                                    <Form.Label>Brand/Model</Form.Label>
+                                    <Form.Label>Brand/Model *</Form.Label>
                                     <Form.Control
+                                        size="sm"
                                         id="postContent"
                                         type="text"
                                         placeholder="Enter brand/model"
@@ -74,8 +96,21 @@ export default class AddWarrantyModal extends React.Component {
                                     />
                                 </Form.Group>
                                 <Form.Group>
+                                    <Form.Label>Serial Number *</Form.Label>
+                                    <Form.Control
+                                        size="sm"
+                                        id="postContent"
+                                        type="text"
+                                        placeholder="Enter serialNumber"
+                                        name="serialNumber"
+                                        value={this.state.serialNumber}
+                                        onChange={this.handleChange}
+                                    />
+                                </Form.Group>
+                                <Form.Group>
                                     <Form.Label>Purchase Date</Form.Label>
                                     <Form.Control
+                                        size="sm"
                                         id="postContent"
                                         type="text"
                                         placeholder="Enter purchaseDate"
@@ -87,6 +122,7 @@ export default class AddWarrantyModal extends React.Component {
                                 <Form.Group>
                                     <Form.Label>Warranty Length</Form.Label>
                                     <Form.Control
+                                        size="sm"
                                         id="postContent"
                                         type="text"
                                         placeholder="Enter warrantyLength"
@@ -95,20 +131,17 @@ export default class AddWarrantyModal extends React.Component {
                                         onChange={this.handleChange}
                                     />
                                 </Form.Group>
-                                <Form.Group>
-                                    <Form.Label>Serial Number</Form.Label>
-                                    <Form.Control
-                                        id="postContent"
-                                        type="text"
-                                        placeholder="Enter serialNumber"
-                                        name="serialNumber"
-                                        value={this.state.serialNumber}
-                                        onChange={this.handleChange}
-                                    />
-                                </Form.Group>
-                                <Form.Group>
+
+                                <Form.File
+                                    size="sm"
+                                    id="custom-file"
+                                    label="png/jpeg"
+                                    custom
+                                />
+                                {/* <Form.Group>
                                     <Form.Label>Receipt Photo</Form.Label>
                                     <Form.Control
+                                        size="sm"
                                         id="postContent"
                                         type="text"
                                         placeholder="upload photo"
@@ -116,10 +149,11 @@ export default class AddWarrantyModal extends React.Component {
                                         value={this.state.photo}
                                         onChange={this.handleChange}
                                     />
-                                </Form.Group>
+                                </Form.Group> */}
                                 <Form.Group>
                                     <Form.Label>Comments</Form.Label>
                                     <Form.Control
+                                        size="sm"
                                         id="postContent"
                                         type="text"
                                         placeholder="Enter comments"

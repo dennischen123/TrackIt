@@ -7,8 +7,12 @@ export default class Home extends React.Component {
     render() {
         return (
             <div className="Home">
-                {/* <h2>Home</h2> */}
-                {/* <Login /> */}
+                {/* testing */}
+                {/* <div className="d-flex justify-content-center align-items-center container">
+                    <div className="row bg-white">asdasd</div>
+                </div> */}
+
+                {/* testing */}
                 {!this.props.uid && (this.props.login || this.props.register) 
                     ? 
                 <> 
@@ -21,7 +25,7 @@ export default class Home extends React.Component {
                 :
                 <></>
                 }
-                {this.props.name && <h1 className="text-center text-white">Welcome {this.props.name.replace(this.props.name[0], this.props.name.charAt(0).toUpperCase())}</h1>}
+                {this.props.name && <h1 className="text-center text-white">Welcome {this.props.name.replace(this.props.name[0], this.props.name.charAt(0).toUpperCase())}</h1>} */}
             </div>
         );
     }
