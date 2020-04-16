@@ -33,8 +33,6 @@ export default class WarrantyContainer extends React.Component {
                 this.setState({
                     warranties: res.data.warranties
                 })
-                // this.state.warranties.push(body);
-                // this.forceUpdate()
             })
             .catch(err => console.log(err))
     }
@@ -53,8 +51,7 @@ export default class WarrantyContainer extends React.Component {
         return (
             <div className="WarrantyContainer border border-dark text-center">
                 <h4>Warranties</h4>
-                <p>6 items</p>
-                {/* <div className="bg-light ml-3 mr-3">+</div> */}
+                {this.state.warranties ? <p>{this.state.warranties.length} items</p> : <p>0 items</p>}
                 <AddWarrantyModal handleAddWarranty={this.handleAddWarranty} addWarrantyClicked={this.addWarrantyClicked} addWarrantyStatus={this.state.addWarrantyStatus} />
                 <button onClick={this.addWarrantyClicked} className="btn btn-secondary btn-block">+</button>
                 <div className="container warranties row row-cols-1">

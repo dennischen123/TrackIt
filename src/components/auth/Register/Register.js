@@ -30,27 +30,27 @@ export default class Register extends React.Component {
                 <h2>Register</h2>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Name</Form.Label>
+                        {/* <Form.Label>Name</Form.Label> */}
                         <Form.Control 
                             onChange={this.handleChange}
                             type="text" 
-                            placeholder="Enter name"
+                            placeholder="Name"
                             name="name"
                             value={this.state.name}
                             />
                     </Form.Group>
                     <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
+                        {/* <Form.Label>Email address</Form.Label> */}
                         <Form.Control 
                             onChange={this.handleChange}
                             type="email"
-                            placeholder="Enter email"
+                            placeholder="Email"
                             name="email"
                             value={this.state.email}
                             />
                     </Form.Group>
                     <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
+                        {/* <Form.Label>Password</Form.Label> */}
                         <Form.Control
                             onChange={this.handleChange}
                             type="password" 

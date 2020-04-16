@@ -1,19 +1,21 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
-// import Home from '../components/Home/Home';
 import Home from '../Home/Home'
-// import Register from '../components/auth/Register/Register';
-// import Login from '../components/auth/login/login';
-import Register from '../auth/Register/Register';
-import Login from '../auth/Login/Login'
+// import Register from '../auth/Register/Register';
+// import Login from '../auth/Login/Login'
 import Locker from '../../components/Locker/Locker'
-// import WarrantyContainer from '../../containers/WarrantyContainer/WarrantyContainer'
-// import AdditionalContainer from '../../containers/AdditionalContainer/AdditionalContainer'
 
 const Routes = (props) => {
     return (
         <Switch>
-            <Route exact path='/' component={ Home }/>
+            {/* <Route exact path='/' component={ Home }/> */}
+            <Route 
+                exact path="/"
+                render = {
+                    // () => <Home login={props.login} uid={props.uid} name={props.name}/>
+                    () => <Home name={props.name}/>
+                }
+            />
             <Route 
                 path="/locker"
                 render= {
@@ -24,18 +26,20 @@ const Routes = (props) => {
                 path='/register'
                 render={
                     () => props.uid ? 
-                            <Redirect to="/home" /> 
+                            <Redirect to="/" /> 
                         : 
-                            <Register register={ props.register } />
+                            <Home register={props.register} />
+                            // <Register register={ props.register } />
                 }
             />
             <Route 
                 path='/login'
                 render={
                     () => props.uid ? 
-                            <Redirect to="/home" />
+                            <Redirect to="/" />
                         :
-                            <Login login={props.login} />
+                            // <Login login={props.login} />
+                            <Home login={props.login} />
                 }
             />
         </Switch>

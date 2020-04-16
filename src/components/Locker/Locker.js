@@ -1,4 +1,5 @@
 import React from 'react';
+import './Locker.css';
 import WarrantyContainer from '../../containers/WarrantyContainer/WarrantyContainer';
 import AdditionalContainer from '../../containers/AdditionalContainer/AdditionalContainer';
 

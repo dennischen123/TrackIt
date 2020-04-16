@@ -78,11 +78,13 @@ class App extends React.Component {
           logout={this.logout}
           name={this.state.name}
           uid={this.state.uid}
+          login={this.login}
         />
         <Routes 
           login={this.login}
           register={this.register}
           uid={this.state.uid}
+          name={this.state.name}
         />
         {/* <Footer /> */}
       </div>
