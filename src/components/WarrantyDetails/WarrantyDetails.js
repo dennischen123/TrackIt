@@ -14,10 +14,10 @@ export default class WarrantyDetails extends React.Component {
         let id = path[path.length - 1];
         warrantyAPI.show(this.props.uid, id)
             .then(res => {
-                let image = res.data[0].image;
+                let image = new Buffer.from(res.data[0].image.data).toString('base64')
                 let id = res.data[0]._id;
                 delete res.data[0]._id;
-                // delete res.data[0].image;
+                delete res.data[0].image;
                 this.setState({
                     warranty: res.data[0],
                     wid: id,
@@ -39,6 +39,7 @@ export default class WarrantyDetails extends React.Component {
         this.setState(prevState => ({
             warranty: { ...prevState.warranty, [name]: value }
         }));
+
 
     render() {
         !this.state.warranty && this.getWarranty()
@@ -66,7 +67,7 @@ export default class WarrantyDetails extends React.Component {
                         </>
                     :
                         <>
-                            <img className="col-5 img-thumbnail" alt="Responsive image" src={this.state.image} ></img>
+                            <img className="col-5 img-thumbnail" alt="Responsive image" src={`data:image/jpeg;base64,${this.state.image}`}></img>
                         </>
                 }
                 </div>

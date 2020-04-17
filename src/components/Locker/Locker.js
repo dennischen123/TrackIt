@@ -16,7 +16,6 @@ export default class Locker extends React.Component {
                         <AdditionalContainer uid={this.props.uid}/>
                     </div>
                 </div>
-
             </div>
         );
     }
