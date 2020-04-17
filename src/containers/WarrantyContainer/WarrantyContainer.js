@@ -3,6 +3,7 @@ import warrantyAPI from '../../api/warrantyAPI';
 import Warranty from '../../components/Warranty/Warranty';
 import './WarrantyContainer.css'
 import AddWarrantyModal from '../../components/AddWarrantyModal/AddWarrantyModal';
+import myState from '../../utils/myState';
 
 export default class WarrantyContainer extends React.Component {
     state = {
@@ -27,9 +28,14 @@ export default class WarrantyContainer extends React.Component {
         })
     }
 
-    handleAddWarranty = (body) => {
+    handleAddWarranty = (body, cb) => {
+        console.log("making request to add warranty")
         warrantyAPI.create(this.props.uid,body)
             .then(res => {
+                console.log("new warranty created", res);
+                myState.set('wid', res.data.warranties[res.data.warranties.length - 1]._id);
+                console.log(res.data.warranties[res.data.warranties.length-1]._id)
+                cb()
                 this.setState({
                     warranties: res.data.warranties
                 })
@@ -52,7 +58,7 @@ export default class WarrantyContainer extends React.Component {
             <div className="WarrantyContainer border border-dark text-center">
                 <h4>Warranties</h4>
                 {this.state.warranties ? <p>{this.state.warranties.length} items</p> : <p>0 items</p>}
-                <AddWarrantyModal handleAddWarranty={this.handleAddWarranty} addWarrantyClicked={this.addWarrantyClicked} addWarrantyStatus={this.state.addWarrantyStatus} />
+                <AddWarrantyModal uid={this.props.uid} handleAddWarranty={this.handleAddWarranty} addWarrantyClicked={this.addWarrantyClicked} addWarrantyStatus={this.state.addWarrantyStatus} />
                 <button onClick={this.addWarrantyClicked} className="btn btn-secondary btn-block">+</button>
                 <div className="container warranties row row-cols-1">
                     {

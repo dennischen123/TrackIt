@@ -1,7 +1,10 @@
 import React from "react";
+import imageAPI from "../../api/imageAPI";
 import Modal from "react-bootstrap/Modal";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import FormData from 'form-data';
+import myState from '../../utils/myState';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default class AddWarrantyModal extends React.Component {
@@ -36,9 +39,21 @@ export default class AddWarrantyModal extends React.Component {
     }
 
     handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
+        if (event.target.name == 'photo'){
+            const files = event.target.files
+            files[0].uid = this.props.uid;
+            const formData = new FormData()
+            formData.append('photo', files[0])
+            formData.append('uid', this.props.uid)
+            this.setState({
+                [event.target.name]: formData
+            })
+        }else { 
+            this.setState({
+                [event.target.name]: event.target.value
+            })
+        }
+
     }
 
     handleAddWarranty = () => {
@@ -51,13 +66,24 @@ export default class AddWarrantyModal extends React.Component {
             photo: this.state.photo,
             comments: this.state.comments
         }
-        this.props.handleAddWarranty(warranty);
+        // imageAPI.create(this.props.uid, this.state.photo)
+        //     .then(res => console.log(res.data))
+        this.props.handleAddWarranty(warranty, this.handleUpload)
+        // this.handleUpload()
         this.props.addWarrantyClicked();
     }
 
     handleOnHide = () => {
         this.setState(this.getInitialState);
         this.props.addWarrantyClicked();
+    }
+
+    handleUpload = () => {
+        // e.preventDefault()
+        // console.log(this.state.photo[0])
+        imageAPI.create(this.props.uid, myState.get('wid'), this.state.photo)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     }
 
     render() {
@@ -131,25 +157,6 @@ export default class AddWarrantyModal extends React.Component {
                                         onChange={this.handleChange}
                                     />
                                 </Form.Group>
-
-                                <Form.File
-                                    size="sm"
-                                    id="custom-file"
-                                    label="png/jpeg"
-                                    custom
-                                />
-                                {/* <Form.Group>
-                                    <Form.Label>Receipt Photo</Form.Label>
-                                    <Form.Control
-                                        size="sm"
-                                        id="postContent"
-                                        type="text"
-                                        placeholder="upload photo"
-                                        name="photo"
-                                        value={this.state.photo}
-                                        onChange={this.handleChange}
-                                    />
-                                </Form.Group> */}
                                 <Form.Group>
                                     <Form.Label>Comments</Form.Label>
                                     <Form.Control
@@ -162,6 +169,13 @@ export default class AddWarrantyModal extends React.Component {
                                         onChange={this.handleChange}
                                     />
                                 </Form.Group>
+                                <div className="form-group">
+                                    {/* <form action="http://localhost:4000/api/upload" method="post" encType="multipart/form-data"> */}
+                                    <input className="form-control-file" type="file" accept="image/*" name="photo" onChange={this.handleChange}/>
+                                    {/* <input className="btn mt-3" type="submit" value="upload"/> */}
+                                    <button className="btn btn-primary btn-sm" onClick={this.handleUpload}>upload</button>
+                                    {/* </form> */}
+                                </div>
                             </Form>
                         </Modal.Body>
                         <Modal.Footer>
