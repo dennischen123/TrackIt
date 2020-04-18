@@ -68,7 +68,10 @@ export default class AddWarrantyModal extends React.Component {
         }
         // imageAPI.create(this.props.uid, this.state.photo)
         //     .then(res => console.log(res.data))
-        this.props.handleAddWarranty(warranty, this.handleUpload)
+        if (warranty.photo)
+            this.props.handleAddWarranty(warranty, this.handleUpload)
+        else
+            this.props.handleAddWarranty(warranty)
         // this.handleUpload()
         this.props.addWarrantyClicked();
     }
@@ -170,11 +173,8 @@ export default class AddWarrantyModal extends React.Component {
                                     />
                                 </Form.Group>
                                 <div className="form-group">
-                                    {/* <form action="http://localhost:4000/api/upload" method="post" encType="multipart/form-data"> */}
                                     <input className="form-control-file" type="file" accept="image/*" name="photo" onChange={this.handleChange}/>
-                                    {/* <input className="btn mt-3" type="submit" value="upload"/> */}
-                                    <button className="btn btn-primary btn-sm" onClick={this.handleUpload}>upload</button>
-                                    {/* </form> */}
+                                    {/* <button className="btn btn-primary btn-sm" onClick={this.handleUpload}>upload</button> */}
                                 </div>
                             </Form>
                         </Modal.Body>

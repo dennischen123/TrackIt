@@ -1,12 +1,15 @@
 import React from 'react';
 import warrantyAPI from '../../api/warrantyAPI';
 import Form from 'react-bootstrap/Form';
+import { saveAs } from 'file-saver';
+import axios from 'axios';
+import imageAPI from '../../api/imageAPI'
 
 export default class WarrantyDetails extends React.Component {
     state = {
         warranty: "",
         wid:'',
-        image: '',
+        photo: '',
     }
 
     getWarranty = () => {
@@ -14,14 +17,15 @@ export default class WarrantyDetails extends React.Component {
         let id = path[path.length - 1];
         warrantyAPI.show(this.props.uid, id)
             .then(res => {
-                let image = new Buffer.from(res.data[0].image.data).toString('base64')
+                let image = '';
+                image = res.data[0].image ? new Buffer.from(res.data[0].image.data).toString('base64') : ''
                 let id = res.data[0]._id;
                 delete res.data[0]._id;
                 delete res.data[0].image;
                 this.setState({
                     warranty: res.data[0],
                     wid: id,
-                    image: image
+                    photo: image
                 })
             })
             .catch(err => console.log(err))
@@ -31,15 +35,42 @@ export default class WarrantyDetails extends React.Component {
         warrantyAPI.update(this.props.uid, this.state.wid, this.state.warranty)
             .then(res => {
                 console.log(res.data)
+                if(this.state.photo && typeof(this.state.photo) !== 'string'){
+                    console.log('uploading image...')
+                    console.log(typeof(this.state.photo))
+                    imageAPI.create(this.props.uid, this.state.wid, this.state.photo)
+
+                }
             })
     }
 
+    uploadOnChange = (event) => {
+        const files = event.target.files
+        files[0].uid = this.props.uid;
+        const formData = new FormData()
+        formData.append('photo', files[0])
+        formData.append('uid', this.props.uid)
+        this.setState({
+            [event.target.name]: formData
+        })
+
+    }
     //when setState is passed a function instead of object, first argument = prev state
     onChange = ({ target: { name, value } }) =>
         this.setState(prevState => ({
             warranty: { ...prevState.warranty, [name]: value }
         }));
+    
+    handlePdf = () => {
+        console.log("Converting to PDF")
+        axios.post('http://localhost:4000/api/create-pdf', this.state.warranty)
+            .then(() => axios.get('http://localhost:4000/api/fetch-pdf', { responseType: 'blob' }))
+            .then((res) => {
+                const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
 
+                saveAs(pdfBlob, 'newPdf.pdf');
+            })
+    }
 
     render() {
         !this.state.warranty && this.getWarranty()
@@ -57,17 +88,25 @@ export default class WarrantyDetails extends React.Component {
                                 <Form.Control onChange={this.onChange} type="text" size="sm" name={key} value={this.state.warranty[key]} />
                             </>)
                         }
+                        {!this.state.photo && 
+                            <div className="form-group">
+                                <input className="form-control-file" type="file" accept="image/*" name="photo" onChange={this.uploadOnChange} />
+                                {/* <button className="btn btn-primary btn-sm" onClick={this.handleUpload}>upload</button> */}
+                            </div>
+                        }
+                        
                         <button onClick={this.handleUpdate} className="btn btn-primary btn-sm mt-3">Update</button>
+                        <button onClick={this.handlePdf} className="ml-3 btn btn-primary btn-sm mt-3">Download PDF</button>
                     </div>
 
-                {!this.state.image ? 
+                {!this.state.photo ? 
                         <>
                             {/* <Form.Label>image</Form.Label>
                             <Form.Control onChange={this.onChange} type="text" size="sm" name="image" value={this.state.warranty['image']} />            */}
                         </>
                     :
                         <>
-                            <img className="col-5 img-thumbnail" alt="Responsive image" src={`data:image/jpeg;base64,${this.state.image}`}></img>
+                            <img className="col-5 img-thumbnail" alt="Responsive image" src={`data:image/jpeg;base64,${this.state.photo}`}></img>
                         </>
                 }
                 </div>

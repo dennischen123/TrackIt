@@ -35,7 +35,7 @@ export default class WarrantyContainer extends React.Component {
                 console.log("new warranty created", res);
                 myState.set('wid', res.data.warranties[res.data.warranties.length - 1]._id);
                 console.log(res.data.warranties[res.data.warranties.length-1]._id)
-                cb()
+                cb && cb()
                 this.setState({
                     warranties: res.data.warranties
                 })
