@@ -66,13 +66,10 @@ export default class AddWarrantyModal extends React.Component {
             photo: this.state.photo,
             comments: this.state.comments
         }
-        // imageAPI.create(this.props.uid, this.state.photo)
-        //     .then(res => console.log(res.data))
         if (warranty.photo)
             this.props.handleAddWarranty(warranty, this.handleUpload)
         else
             this.props.handleAddWarranty(warranty)
-        // this.handleUpload()
         this.props.addWarrantyClicked();
     }
 
@@ -82,8 +79,6 @@ export default class AddWarrantyModal extends React.Component {
     }
 
     handleUpload = () => {
-        // e.preventDefault()
-        // console.log(this.state.photo[0])
         imageAPI.create(this.props.uid, myState.get('wid'), this.state.photo)
             .then(res => console.log(res))
             .catch(err => console.log(err))
