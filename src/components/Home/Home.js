@@ -2,11 +2,13 @@ import React from 'react';
 import './Home.css';
 import Login from '../auth/Login/Login';
 import Register from '../auth/Register/Register';
+import LogoText from '../LogoText/LogoText'
 
 export default class Home extends React.Component {
     render() {
         return (
             <div className="Home">
+                {(!this.props.login && !this.props.register) && <LogoText />}
                 {!this.props.uid && (this.props.login || this.props.register) 
                     ? 
                 <> 
