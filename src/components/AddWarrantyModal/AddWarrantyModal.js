@@ -39,7 +39,7 @@ export default class AddWarrantyModal extends React.Component {
     }
 
     handleChange = (event) => {
-        if (event.target.name == 'photo'){
+        if (event.target.name === 'photo'){
             const files = event.target.files
             files[0].uid = this.props.uid;
             const formData = new FormData()
@@ -70,6 +70,7 @@ export default class AddWarrantyModal extends React.Component {
             this.props.handleAddWarranty(warranty, this.handleUpload)
         else
             this.props.handleAddWarranty(warranty)
+        this.resetState();
         this.props.addWarrantyClicked();
     }
 
@@ -137,7 +138,7 @@ export default class AddWarrantyModal extends React.Component {
                                         size="sm"
                                         id="postContent"
                                         type="text"
-                                        placeholder="Enter purchaseDate"
+                                        placeholder="mm/dd/yyyy"
                                         name="purchaseDate"
                                         value={this.state.purchaseDate}
                                         onChange={this.handleChange}
@@ -169,7 +170,6 @@ export default class AddWarrantyModal extends React.Component {
                                 </Form.Group>
                                 <div className="form-group">
                                     <input className="form-control-file" type="file" accept="image/*" name="photo" onChange={this.handleChange}/>
-                                    {/* <button className="btn btn-primary btn-sm" onClick={this.handleUpload}>upload</button> */}
                                 </div>
                             </Form>
                         </Modal.Body>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Form, Button } from 'react-bootstrap'
 import './Register.css';
 
 export default class Register extends React.Component {
@@ -25,48 +24,6 @@ export default class Register extends React.Component {
         this.props.register(user)
     }
 
-    // render() {
-    //     return (
-    //         <div className="Register">
-    //             <h2>Register</h2>
-    //             <Form onSubmit={this.handleSubmit}>
-    //                 <Form.Group controlId="formBasicEmail">
-    //                     {/* <Form.Label>Name</Form.Label> */}
-    //                     <Form.Control 
-    //                         onChange={this.handleChange}
-    //                         type="text" 
-    //                         placeholder="Name"
-    //                         name="name"
-    //                         value={this.state.name}
-    //                         />
-    //                 </Form.Group>
-    //                 <Form.Group controlId="formBasicEmail">
-    //                     {/* <Form.Label>Email address</Form.Label> */}
-    //                     <Form.Control 
-    //                         onChange={this.handleChange}
-    //                         type="email"
-    //                         placeholder="Email"
-    //                         name="email"
-    //                         value={this.state.email}
-    //                         />
-    //                 </Form.Group>
-    //                 <Form.Group controlId="formBasicPassword">
-    //                     {/* <Form.Label>Password</Form.Label> */}
-    //                     <Form.Control
-    //                         onChange={this.handleChange}
-    //                         type="password" 
-    //                         placeholder="Password" 
-    //                         name="password"
-    //                         value={this.state.password}
-    //                         />
-    //                 </Form.Group>
-    //                 <Button variant="primary" type="submit">
-    //                     Submit
-    //                 </Button>
-    //             </Form>
-    //         </div>
-    //     );
-    // }
     render() {
         return (
             <div className="Register">
@@ -85,7 +42,6 @@ export default class Register extends React.Component {
                                 placeholder="Name"
                                 name="name"
                                 value={this.state.name}
-                            // type="email" className="user-input" placeholder="Email"
                             />
                         </div>
                         <div className="email">
@@ -101,7 +57,6 @@ export default class Register extends React.Component {
                                 placeholder="Email"
                                 name="email"
                                 value={this.state.email}
-                            // type="email" className="user-input" placeholder="Email"
                             />
                         </div>
                         <div className="password">
@@ -117,13 +72,10 @@ export default class Register extends React.Component {
                                 placeholder="Password"
                                 name="password"
                                 value={this.state.password}
-                            // type="password" className="pass-input" placeholder="Password"
                             />
                         </div>
                         <button className="signin-button" type="submit" >Register</button>
                         <div className="link">
-                            {/* <Link className="nav-link link-register" to="/register">Register</Link> */}
-                            {/* <a href="#">Signup</a> */}
                         </div>
                     </div>
                 </form>

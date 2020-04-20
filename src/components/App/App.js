@@ -73,7 +73,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="APP">
-        {/* <h1>App</h1> */}
         <Header
           logout={this.logout}
           name={this.state.name}
@@ -86,7 +85,6 @@ class App extends React.Component {
           uid={this.state.uid}
           name={this.state.name}
         />
-        {/* <Footer /> */}
       </div>
     )
   }

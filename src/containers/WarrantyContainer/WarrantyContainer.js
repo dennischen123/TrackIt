@@ -29,12 +29,9 @@ export default class WarrantyContainer extends React.Component {
     }
 
     handleAddWarranty = (body, cb) => {
-        console.log("making request to add warranty")
         warrantyAPI.create(this.props.uid,body)
             .then(res => {
-                console.log("new warranty created", res);
                 myState.set('wid', res.data.warranties[res.data.warranties.length - 1]._id);
-                console.log(res.data.warranties[res.data.warranties.length-1]._id)
                 cb && cb()
                 this.setState({
                     warranties: res.data.warranties
@@ -44,7 +41,6 @@ export default class WarrantyContainer extends React.Component {
     }
 
     handleDelete = (uid, wid) => {
-        // console.log(this.state.warranties)
         warrantyAPI.destroy(uid, wid)
             .then(res => this.setState({
                 warranties: this.state.warranties.filter(warranty => warranty._id !== wid)

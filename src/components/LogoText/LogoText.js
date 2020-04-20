@@ -4,7 +4,6 @@ import './LogoText.css';
 export default class LogoText extends React.Component {
     render() {
         return (
-            // <svg id="logo" width="1016" height="217" viewBox="0 0 1016 217" xmlns="http://www.w3.org/2000/svg">
             <svg id="logo" width="70vw" height="300" viewBox="0 0 1016 217" xmlns="http://www.w3.org/2000/svg">
                 <path stroke="#F2F2F2" strokeWidth="5" d="M136.728 13.264V34.576H82.008V214H55.8V34.576H0.791992V13.264H136.728Z" />
                 <path stroke="#F2F2F2" strokeWidth="5" d="M195.196 81.808C199.804 72.784 206.332 65.776 214.78 60.784C223.42 55.792 233.884 53.296 246.173 53.296V80.368H239.26C209.884 80.368 195.196 96.304 195.196 128.176V214H168.988V56.176H195.196V81.808Z"/>

@@ -22,7 +22,6 @@ export default class WarrantyDetails extends React.Component {
                 let id = res.data[0]._id;
                 delete res.data[0]._id;
                 delete res.data[0].image;
-                res.data[0].purchaseDate.toString().slice(0,10);
                 this.setState({
                     warranty: res.data[0],
                     wid: id,
@@ -35,10 +34,7 @@ export default class WarrantyDetails extends React.Component {
     handleUpdate = () => {
         warrantyAPI.update(this.props.uid, this.state.wid, this.state.warranty)
             .then(res => {
-                console.log(res.data)
                 if(this.state.photo && typeof(this.state.photo) !== 'string'){
-                    console.log('uploading image...')
-                    console.log(typeof(this.state.photo))
                     imageAPI.create(this.props.uid, this.state.wid, this.state.photo)
 
                 }
@@ -54,21 +50,18 @@ export default class WarrantyDetails extends React.Component {
         this.setState({
             [event.target.name]: formData
         })
-
     }
-    //when setState is passed a function instead of object, first argument = prev state
     onChange = ({ target: { name, value } }) =>
         this.setState(prevState => ({
             warranty: { ...prevState.warranty, [name]: value }
         }));
     
     handlePdf = () => {
-        console.log("Converting to PDF")
         axios.post('http://localhost:4000/api/create-pdf', this.state.warranty)
             .then(() => axios.get('http://localhost:4000/api/fetch-pdf', { responseType: 'blob' }))
             .then((res) => {
                 const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
-                saveAs(pdfBlob, 'newPdf.pdf');
+                saveAs(pdfBlob, `${this.state.warranty.name}-warranty-info.pdf`);
             })
     }
 

@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Form, Button } from 'react-bootstrap'
 import './Login.css';
 import { Link } from 'react-router-dom'
 
@@ -17,48 +16,12 @@ export default class Login extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        // console.log("inside handlesubmit")
         let user = {
             email: this.state.email,
             password: this.state.password
         }
         this.props.login(user)
-        // .catch(err => console.log(err))
     }
-
-    // render() {
-    //     return (
-    //         <div className="Login">
-    //             <h2>Login</h2>
-    //             <Form onSubmit={this.handleSubmit}>
-    //                 <Form.Group controlId="formBasicEmail">
-    //                     {/* <Form.Label>Email</Form.Label> */}
-    //                     <Form.Control 
-    //                         // type="email" 
-    //                         onChange={this.handleChange}
-    //                         placeholder="Email"
-    //                         name="email"
-    //                         value={this.state.email}
-    //                         />
-    //                 </Form.Group>
-
-    //                 <Form.Group controlId="formBasicPassword">
-    //                     {/* <Form.Label>Password</Form.Label> */}
-    //                     <Form.Control
-    //                         onChange={this.handleChange}
-    //                         type="password" 
-    //                         placeholder="Password" 
-    //                         name="password"
-    //                         value={this.state.password}
-    //                         />
-    //                 </Form.Group>
-    //                 <Button variant="primary" type="submit">
-    //                     Submit
-    //                 </Button>
-    //             </Form>
-    //         </div>
-    //     );
-    // }
 
     render () {
         return (
@@ -80,7 +43,6 @@ export default class Login extends React.Component {
                                 placeholder="Email"
                                 name="email"
                                 value={this.state.email}
-                            // type="email" className="user-input" placeholder="Email"
                             />
                         </div>
                         <div className="password">
@@ -96,13 +58,11 @@ export default class Login extends React.Component {
                                 placeholder="Password" 
                                 name="password"
                                 value={this.state.password}
-                            // type="password" className="pass-input" placeholder="Password"
                             />
                         </div>
                         <button className="signin-button" type="submit" >Login</button>
                         <div className="link">
                             <Link className="nav-link link-register" to="/register">Register</Link>
-                            {/* <a href="#">Signup</a> */}
                         </div>
                     </div>
                 </form>
