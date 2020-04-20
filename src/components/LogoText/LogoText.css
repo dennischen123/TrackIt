@@ -13,8 +13,8 @@
 }
 
 #logo path:nth-child(2) {
-    stroke-dasharray: 673.343994140625;
-    stroke-dashoffset: 673.343994140625;
+    stroke-dasharray: 492.0507507324219;
+    stroke-dashoffset: 492.0507507324219;
     animation: line-anim 2s ease forwards 0.3s;
 }
 

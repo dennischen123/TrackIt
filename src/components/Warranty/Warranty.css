@@ -1,0 +1,14 @@
+.Warranty {
+    width: 25vw;
+    height: 200px;
+    margin-left: 100px;
+    border: black solid 2px;
+    border-radius: 50px;
+    box-shadow: 3px 3px 7px #377fc7,
+            -3px -3px 7px #6d1212;
+}
+
+.Warranty h3 span{
+    text-shadow: 3px 3px 7px #377fc7,
+            -3px -3px 7px #6d1212;
+}

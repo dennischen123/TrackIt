@@ -56,11 +56,11 @@ export default class WarrantyContainer extends React.Component {
         let warranties = this.state.warranties;
         return (
             <div className="WarrantyContainer border border-dark text-center">
-                <h4>Warranties</h4>
+                <h1>Warranties</h1>
                 {this.state.warranties ? <p>{this.state.warranties.length} items</p> : <p>0 items</p>}
                 <AddWarrantyModal uid={this.props.uid} handleAddWarranty={this.handleAddWarranty} addWarrantyClicked={this.addWarrantyClicked} addWarrantyStatus={this.state.addWarrantyStatus} />
-                <button onClick={this.addWarrantyClicked} className="btn btn-secondary btn-block">+</button>
-                <div className="container warranties row row-cols-1">
+                <button onClick={this.addWarrantyClicked} className="add-button btn btn-secondary btn-block mb-3">+</button>
+                <div className="container warranties">
                     {
                         warranties && warranties.map(warranty => {
                             return <Warranty handleDelete={this.handleDelete} warranty={warranty} key={warranty._id} uid={this.props.uid}/>

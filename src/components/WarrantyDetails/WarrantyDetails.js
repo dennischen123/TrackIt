@@ -22,6 +22,7 @@ export default class WarrantyDetails extends React.Component {
                 let id = res.data[0]._id;
                 delete res.data[0]._id;
                 delete res.data[0].image;
+                res.data[0].purchaseDate.toString().slice(0,10);
                 this.setState({
                     warranty: res.data[0],
                     wid: id,
@@ -67,7 +68,6 @@ export default class WarrantyDetails extends React.Component {
             .then(() => axios.get('http://localhost:4000/api/fetch-pdf', { responseType: 'blob' }))
             .then((res) => {
                 const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
-
                 saveAs(pdfBlob, 'newPdf.pdf');
             })
     }
@@ -77,7 +77,6 @@ export default class WarrantyDetails extends React.Component {
         return (
             <div className="container">
                 <h2>Warranty Details</h2>
-                {/* <Form /> */}
                 <div className="row">
                     <div className="col-7">
                         {this.state.warranty && Object.keys(this.state.warranty).map(key =>
@@ -91,7 +90,6 @@ export default class WarrantyDetails extends React.Component {
                         {!this.state.photo && 
                             <div className="form-group">
                                 <input className="form-control-file" type="file" accept="image/*" name="photo" onChange={this.uploadOnChange} />
-                                {/* <button className="btn btn-primary btn-sm" onClick={this.handleUpload}>upload</button> */}
                             </div>
                         }
                         
@@ -101,8 +99,6 @@ export default class WarrantyDetails extends React.Component {
 
                 {!this.state.photo ? 
                         <>
-                            {/* <Form.Label>image</Form.Label>
-                            <Form.Control onChange={this.onChange} type="text" size="sm" name="image" value={this.state.warranty['image']} />            */}
                         </>
                     :
                         <>

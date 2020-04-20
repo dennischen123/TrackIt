@@ -8,13 +8,15 @@ export default class Locker extends React.Component {
         return (
             <div className="Locker container">
                 {/* <h2>Locker Page</h2> */}
-                <div className="overflow-auto row">
-                    <div className="col" >
+                <div className="row">
+                    <div className="col-3"></div>
+                    <div className="overflow-auto col-7" >
                         <WarrantyContainer uid={this.props.uid}/>
                     </div>
-                    <div className="col">
+                    <div className="col-3"></div>
+                    {/* <div className="col">
                         <AdditionalContainer uid={this.props.uid}/>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         );
