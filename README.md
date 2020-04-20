@@ -3,10 +3,13 @@ Never lose out on your warranties again!
 TrackIt can keep track of all necessary information needed to file a warranty claim.
 
 ## Technology Stack
-MongoDB
-Express
-React
-NodeJS
+[MongoDB](https://www.mongodb.com/)
+
+[Express](https://www.npmjs.com/package/express)
+
+[React](https://reactjs.org/)
+
+[NodeJS](https://nodejs.org/en/)
 
 ## Existing Features
 * Add, Edit, Delete, and Update on warranties.
