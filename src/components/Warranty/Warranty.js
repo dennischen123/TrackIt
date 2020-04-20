@@ -18,7 +18,7 @@ class Warranty extends React.Component {
                     <p>Length: {this.props.warranty.warrantyLength}</p>
                     <p>Date Purchased: {String(this.props.warranty.purchaseDate).slice(0, 10)}</p>
                     <Link className="btn btn-primary btn-sm mb-3" to={`warranties/${this.props.warranty._id}`} >Details</Link>
-                    <button onClick={() => { this.props.handleDelete(this.props.uid, this.props.warranty._id) }} className="ml-3 btn btn-danger btn-sm mb-3">delete</button>
+                    <button onClick={() => { this.props.handleDelete(this.props.uid, this.props.warranty._id) }} className="ml-3 btn btn-danger btn-sm mb-3">Delete</button>
                 </div> 
             </div>
         )

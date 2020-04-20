@@ -53,7 +53,6 @@ export default class AddWarrantyModal extends React.Component {
                 [event.target.name]: event.target.value
             })
         }
-
     }
 
     handleAddWarranty = () => {
@@ -70,8 +69,8 @@ export default class AddWarrantyModal extends React.Component {
             this.props.handleAddWarranty(warranty, this.handleUpload)
         else
             this.props.handleAddWarranty(warranty)
-        this.resetState();
         this.props.addWarrantyClicked();
+        // this.resetState();
     }
 
     handleOnHide = () => {
@@ -177,7 +176,7 @@ export default class AddWarrantyModal extends React.Component {
                             <Button
                                 variant="primary"
                                 onClick={this.handleAddWarranty} >
-                                Add
+                                Submit
                             </Button>
                         </Modal.Footer>
                     </Modal>

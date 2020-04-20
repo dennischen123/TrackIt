@@ -36,7 +36,6 @@ export default class WarrantyDetails extends React.Component {
             .then(res => {
                 if(this.state.photo && typeof(this.state.photo) !== 'string'){
                     imageAPI.create(this.props.uid, this.state.wid, this.state.photo)
-
                 }
             })
     }
@@ -90,7 +89,7 @@ export default class WarrantyDetails extends React.Component {
                         <button onClick={this.handlePdf} className="ml-3 btn btn-primary btn-sm mt-3">Download PDF</button>
                     </div>
 
-                {!this.state.photo ? 
+                {!this.state.photo? 
                         <>
                         </>
                     :
