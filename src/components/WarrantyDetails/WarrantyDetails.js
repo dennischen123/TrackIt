@@ -56,8 +56,9 @@ export default class WarrantyDetails extends React.Component {
         }));
     
     handlePdf = () => {
-        axios.post('http://localhost:4000/api/create-pdf', this.state.warranty)
-            .then(() => axios.get('http://localhost:4000/api/fetch-pdf', { responseType: 'blob' }))
+        // axios.post('http://localhost:4000/api/create-pdf', this.state.warranty)
+        axios.post(`${ process.env.REACT_APP_API_URL }/create-pdf`, this.state.warranty)
+            .then(() => axios.get(`${process.env.REACT_APP_API_URL }/fetch-pdf`, { responseType: 'blob' }))
             .then((res) => {
                 const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
                 saveAs(pdfBlob, `${this.state.warranty.name}-warranty-info.pdf`);

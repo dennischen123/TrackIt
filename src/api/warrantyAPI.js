@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const endpoint = 'http://localhost:4000/api/users'
+// const endpoint = 'http://localhost:4000/api/users'
+const endpoint = `${process.env.REACT_APP_API_URL}/users`
 
 const index = (uid) => {
     return axios.get(`${endpoint}/${uid}/warranties`)
