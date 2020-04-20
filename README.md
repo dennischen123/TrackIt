@@ -1,6 +1,7 @@
 # TrackIt
 Never lose out on your warranties again!
-TrackIt can keep track of all necessary information needed to file a warranty claim.
+
+TrackIt is a warranty tracker that can keep track of all necessary information needed to file a warranty claim.
 
 ## Technology Stack
 [MongoDB](https://www.mongodb.com/)
