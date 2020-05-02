@@ -13,6 +13,8 @@ TrackIt is a warranty tracker that can keep track of all necessary information n
 
 [NodeJS](https://nodejs.org/en/)
 
+JWTs
+
 ## Existing Features
 * Add, Edit, Delete, and Update on warranties.
 * Uploading image to each warranty.
